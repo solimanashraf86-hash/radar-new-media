@@ -1,172 +1,138 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رادار NEW MEDIA - لوحة متابعة الفرص</title>
-    <style>
-        :root {
-            --bg: #0b0f19;
-            --card-bg: #151d30;
-            --border: #23314e;
-            --text: #f8fafc;
-            --hot: #ef4444;
-            --strong: #f97316;
-            --watch: #38bdf8;
-            --gold: #eab308;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 24px;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 16px;
-            margin-bottom: 24px;
-        }
-        h1 { margin: 0; font-size: 24px; color: var(--gold); }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-        }
-        .column {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 16px;
-            border: 1px solid var(--border);
-        }
-        .col-header {
-            font-size: 18px;
-            font-weight: bold;
-            padding-bottom: 12px;
-            margin-bottom: 16px;
-            border-bottom: 2px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-        }
-        .hot-border { border-color: var(--hot); color: var(--hot); }
-        .strong-border { border-color: var(--strong); color: var(--strong); }
-        .watch-border { border-color: var(--watch); color: var(--watch); }
-        
-        .lead-card {
-            background: #1c2640;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 14px;
-            margin-bottom: 12px;
-        }
-        .lead-meta {
-            font-size: 12px;
-            color: #94a3b8;
-            display: flex;
-            justify-content: space-between;
-            margin-top: 8px;
-        }
-        select {
-            background: #0f172a;
-            color: #fff;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 6px;
-            width: 100%;
-            margin-top: 8px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎯 رادار NEW MEDIA - منظومة رصد الفرص والعملاء</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --gold: #f59e0b;
+      --hot: #ef4444;
+      --strong: #f97316;
+      --watch: #06b6d4;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      margin: 0;
+      padding: 16px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #334155;
+      margin-bottom: 24px;
+    }
+    h1 { font-size: 1.25rem; color: var(--gold); margin: 0; }
+    .status-badge { font-size: 0.85rem; color: #10b981; }
+    .pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .column-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .column-title.hot { color: var(--hot); }
+    .column-title.strong { color: var(--strong); }
+    .column-title.watch { color: var(--watch); }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .card.hot { border-right: 4px solid var(--hot); }
+    .card.strong { border-right: 4px solid var(--strong); }
+    .card.watch { border-right: 4px solid var(--watch); }
+    .card-title { font-weight: bold; font-size: 1rem; margin-bottom: 8px; }
+    .card-desc { font-size: 0.9rem; color: #cbd5e1; margin-bottom: 12px; line-height: 1.4; }
+    .meta-row { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; }
+    select {
+      width: 100%;
+      background: #0f172a;
+      color: var(--text-main);
+      border: 1px solid #475569;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>🎯 رادار NEW MEDIA - منظومة رصد الفرص والعملاء</h1>
-        <span>حالة النظام: متصل وجاهز للرصد</span>
-    </header>
+<header>
+  <h1>🎯 رادار NEW MEDIA</h1>
+  <div class="status-badge">● متصل وجاهز للرصد</div>
+</header>
 
-    <div class="grid">
-        <!-- عمود HOT -->
-        <div class="column">
-            <div class="col-header hot-border">
-                <span>🔥 عملاء جاهزون (HOT)</span>
-                <span>فرص فورية</span>
-            </div>
-            <div class="lead-card">
-                <strong>طلب إعلان فيديو تجاري سريع</strong>
-                <p>استفسار عن تصوير حملة إعلانية قبل نهاية الشهر الجاري.</p>
-                <div class="lead-meta">
-                    <span>المصدر: رسائل عامة</span>
-                    <span>الحداثة: منذ ساعة</span>
-                </div>
-                <select>
-                    <option selected>الحالة: جديد</option>
-                    <option>تم التواصل</option>
-                    <option>رد</option>
-                    <option>مهتم</option>
-                    <option>تفاوض</option>
-                    <option>تم البيع</option>
-                    <option>خسرنا العميل</option>
-                    <option>تجاهل</option>
-                </select>
-            </div>
-        </div>
+<div class="pipeline-grid">
+  <div>
+    <div class="column-title hot">🔥 عملاء جاهزون (HOT)</div>
+    <div id="hot-container"></div>
+  </div>
+  <div>
+    <div class="column-title strong">🟠 عملاء محتملون (STRONG)</div>
+    <div id="strong-container"></div>
+  </div>
+  <div>
+    <div class="column-title watch">👀 تحت المراقبة (WATCH)</div>
+    <div id="watch-container"></div>
+  </div>
+</div>
 
-        <!-- عمود STRONG -->
-        <div class="column">
-            <div class="col-header strong-border">
-                <span>🟠 عملاء محتملون (STRONG)</span>
-                <span>اهتمام عالي</span>
-            </div>
-            <div class="lead-card">
-                <strong>استفسار عن باقات الميديا الشهرية</strong>
-                <p>طلب تفاصيل سابقة الأعمال وإدارة الحملات الرقمية.</p>
-                <div class="lead-meta">
-                    <span>المصدر: شبكات التواصل</span>
-                    <span>الحداثة: منذ 12 ساعة</span>
-                </div>
-                <select>
-                    <option>جديد</option>
-                    <option selected>الحالة: تم التواصل</option>
-                    <option>رد</option>
-                    <option>مهتم</option>
-                    <option>تفاوض</option>
-                    <option>تم البيع</option>
-                    <option>خسرنا العميل</option>
-                    <option>تجاهل</option>
-                </select>
-            </div>
-        </div>
+<script>
+  const statuses = ["جديد", "تم التواصل", "رد", "مهتم", "تفاوض", "تم البيع", "خسرنا العميل", "تجاهل"];
 
-        <!-- عمود WATCH -->
-        <div class="column">
-            <div class="col-header watch-border">
-                <span>👀 تحت المراقبة (WATCH)</span>
-                <span>رصد عام</span>
-            </div>
-            <div class="lead-card">
-                <strong>نشاط تسويقي جديد لبراند محلي</strong>
-                <p>متابعة التفاعل لبحث إمكانية عرض خدمات الإنتاج الإعلاني.</p>
-                <div class="lead-meta">
-                    <span>المصدر: استكشاف السوق</span>
-                    <span>الحداثة: منذ يومين</span>
-                </div>
-                <select>
-                    <option selected>الحالة: جديد</option>
-                    <option>تم التواصل</option>
-                    <option>رد</option>
-                    <option>مهتم</option>
-                    <option>تفاوض</option>
-                    <option>تم البيع</option>
-                    <option>خسرنا العميل</option>
-                    <option>تجاهل</option>
-                </select>
-            </div>
-        </div>
-    </div>
+  function updateStatus(id, newStatus) {
+    localStorage.setItem('lead_status_' + id, newStatus);
+  }
 
+  async function loadLeads() {
+    try {
+      const res = await fetch('data.json');
+      const leads = await res.json();
+      
+      leads.forEach(lead => {
+        const savedStatus = localStorage.getItem('lead_status_' + lead.id) || lead.status || 'جديد';
+        const card = document.createElement('div');
+        card.className = `card ${lead.category.toLowerCase()}`;
+        
+        let optionsHtml = statuses.map(s => `<option value="${s}" ${s === savedStatus ? 'selected' : ''}>الحالة: ${s}</option>`).join('');
+
+        card.innerHTML = `
+          <div class="card-title">${lead.title}</div>
+          <div class="card-desc">${lead.snippet}</div>
+          <div class="meta-row">
+            <span>المصدر: ${lead.source}</span>
+            <span>الحداثة: ${lead.freshness_text}</span>
+          </div>
+          <select onchange="updateStatus('${lead.id}', this.value)">
+            ${optionsHtml}
+          </select>
+        `;
+
+        const target = lead.category === 'HOT' ? 'hot-container' : (lead.category === 'STRONG' ? 'strong-container' : 'watch-container');
+        document.getElementById(target).appendChild(card);
+      });
+    } catch (err) {
+      console.error("خطأ في قراءة البيانات:", err);
+    }
+  }
+
+  loadLeads();
+</script>
 </body>
 </html>
-  
