@@ -1,71 +1,49 @@
-"""نظام رصد الفرص وتحليل نية الشراء - رادار NEW MEDIA"""
+import hashlib
+from datetime import datetime
 
-from datetime import datetime, timedelta
+HOT_KEYWORDS = ["فيديو تجاري", "تصوير إعلان", "حملة إعلانية", "سعر إعلان", "إنتاج فيديو", "عايز فيديو", "مطلوب تصوير"]
+STRONG_KEYWORDS = ["باقات", "إدارة حملات", "تسويق إلكتروني", "سوشيال ميديا", "عرض أسعار", "خدمات تسويق"]
 
-PIPELINE_STAGES = [
-    "جديد",
-    "تم التواصل",
-    "رد",
-    "مهتم",
-    "تفاوض",
-    "تم البيع",
-    "خسرنا العميل",
-    "تجاهل",
-]
+def calculate_freshness(timestamp_str=None):
+    return "منذ لحظات"
 
-HOT_KEYWORDS = [
-    "سعر",
-    "بكام",
-    "محتاج اعلان",
-    "عايز فيديو",
-    "انتاج",
-    "فوري",
-    "تكلفة",
-    "حجز",
-    "تصوير",
-]
-STRONG_KEYWORDS = [
-    "تفاصيل",
-    "خدماتكم",
-    "سابقة اعمال",
-    "عايز استفسر",
-    "باقة",
-    "عرض اسعار",
-]
+def classify_lead(text, source="عام", url=""):
+    text_lower = text.lower()
+    
+    intent_score = 0
+    category = "WATCH"
+    reason = "متابعة نشاط عام واستكشاف فرص"
 
+    for kw in HOT_KEYWORDS:
+        if kw in text_lower:
+            intent_score = 90
+            category = "HOT"
+            reason = f"نية شراء مباشرة وعاجلة ({kw})"
+            break
 
-class LeadRadar:
+    if category != "HOT":
+        for kw in STRONG_KEYWORDS:
+            if kw in text_lower:
+                intent_score = 65
+                category = "STRONG"
+                reason = f"اهتمام واضح واستفسار خدمات ({kw})"
+                break
 
-  def __init__(self):
-    self.seen_leads = set()
+    if category == "WATCH":
+        intent_score = 30
 
-  def is_recent(self, post_date_str: str) -> bool:
-    try:
-      post_date = datetime.fromisoformat(post_date_str)
-      return datetime.now() - post_date <= timedelta(hours=48)
-    except Exception:
-      return True
-
-  def clean_and_deduplicate(self, lead_id: str) -> bool:
-    if lead_id in self.seen_leads:
-      return False
-    self.seen_leads.add(lead_id)
-    return True
-
-  def analyze_intent(self, text: str, post_date: str) -> dict:
-    is_fresh = self.is_recent(post_date)
-
-    if any(word in text for word in HOT_KEYWORDS) and is_fresh:
-      classification = "🔥 HOT"
-    elif any(word in text for word in STRONG_KEYWORDS):
-      classification = "🟠 STRONG"
-    else:
-      classification = "👀 WATCH"
+    lead_id = hashlib.md5((text + source).encode('utf-8')).hexdigest()
 
     return {
-        "classification": classification,
-        "status": "جديد",
-        "is_fresh": is_fresh,
-        "processed_at": datetime.now().isoformat(),
+        "id": lead_id,
+        "title": text[:60] + "..." if len(text) > 60 else text,
+        "snippet": text,
+        "category": category,
+        "intent_score": intent_score,
+        "reason": reason,
+        "freshness_text": calculate_freshness(),
+        "source": source,
+        "url": url,
+        "status": "جديد"
     }
     
