@@ -26,4 +26,4 @@ def fetch_public_leads():
 if __name__ == "__main__":
   leads = fetch_public_leads()
   print(f"تم رصد {len(leads)} فرصة جديدة بنجاح.")
-  
+
