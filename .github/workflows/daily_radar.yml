@@ -1,0 +1,35 @@
+name: Daily Radar Auto-Run
+
+on:
+  schedule:
+    # يعمل تلقائياً كل يوم الساعة 9 صباحاً بتوقيت مصر
+    - cron: '0 7 * * *'
+  workflow_dispatch: # يتيح لك تشغيله يدوياً بضغطة زر في أي وقت
+
+jobs:
+  run-radar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: سحب كود المشروع
+        uses: actions/checkout@v4
+
+      - name: إعداد بايثون
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: تشغيل محرك الرادار
+        run: |
+          python main.py
+
+      - name: حفظ وتحديث البيانات في المستودع
+        run: |
+          git config --global user.name "Radar-Bot"
+          git config --global user.email "bot@newmedia.local"
+          git add dashboard/data.json radar.db
+          git commit -m "تحديث تلقائي: بيانات الرادار اليومية" || exit 0
+          git push
+          
