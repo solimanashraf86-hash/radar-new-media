@@ -1,0 +1,31 @@
+name: Radar Auto Pilot
+
+on:
+  schedule:
+    # التشغيل التلقائي كل ساعتين
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-radar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Radar System
+        run: |
+          python main.py
+
+      - name: Commit & Push Dashboard Updates
+        run: |
+          git config --global user.name "Radar-Bot"
+          git config --global user.email "bot@newmedia.local"
+          git add dashboard/leads_data.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update radar leads [skip ci]" && git push)
+          
