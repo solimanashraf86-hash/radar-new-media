@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رادار NEW MEDIA - لوحة متابعة الفرص</title>
+    <style>
+        :root {
+            --bg: #0b0f19;
+            --card-bg: #151d30;
+            --border: #23314e;
+            --text: #f8fafc;
+            --hot: #ef4444;
+            --strong: #f97316;
+            --watch: #38bdf8;
+            --gold: #eab308;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 24px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        h1 { margin: 0; font-size: 24px; color: var(--gold); }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        .column {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid var(--border);
+        }
+        .col-header {
+            font-size: 18px;
+            font-weight: bold;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+        }
+        .hot-border { border-color: var(--hot); color: var(--hot); }
+        .strong-border { border-color: var(--strong); color: var(--strong); }
+        .watch-border { border-color: var(--watch); color: var(--watch); }
+        
+        .lead-card {
+            background: #1c2640;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+        .lead-meta {
+            font-size: 12px;
+            color: #94a3b8;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+        select {
+            background: #0f172a;
+            color: #fff;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px;
+            width: 100%;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎯 رادار NEW MEDIA - منظومة رصد الفرص والعملاء</h1>
+        <span>حالة النظام: متصل وجاهز للرصد</span>
+    </header>
+
+    <div class="grid">
+        <!-- عمود HOT -->
+        <div class="column">
+            <div class="col-header hot-border">
+                <span>🔥 عملاء جاهزون (HOT)</span>
+                <span>فرص فورية</span>
+            </div>
+            <div class="lead-card">
+                <strong>طلب إعلان فيديو تجاري سريع</strong>
+                <p>استفسار عن تصوير حملة إعلانية قبل نهاية الشهر الجاري.</p>
+                <div class="lead-meta">
+                    <span>المصدر: رسائل عامة</span>
+                    <span>الحداثة: منذ ساعة</span>
+                </div>
+                <select>
+                    <option selected>الحالة: جديد</option>
+                    <option>تم التواصل</option>
+                    <option>رد</option>
+                    <option>مهتم</option>
+                    <option>تفاوض</option>
+                    <option>تم البيع</option>
+                    <option>خسرنا العميل</option>
+                    <option>تجاهل</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- عمود STRONG -->
+        <div class="column">
+            <div class="col-header strong-border">
+                <span>🟠 عملاء محتملون (STRONG)</span>
+                <span>اهتمام عالي</span>
+            </div>
+            <div class="lead-card">
+                <strong>استفسار عن باقات الميديا الشهرية</strong>
+                <p>طلب تفاصيل سابقة الأعمال وإدارة الحملات الرقمية.</p>
+                <div class="lead-meta">
+                    <span>المصدر: شبكات التواصل</span>
+                    <span>الحداثة: منذ 12 ساعة</span>
+                </div>
+                <select>
+                    <option>جديد</option>
+                    <option selected>الحالة: تم التواصل</option>
+                    <option>رد</option>
+                    <option>مهتم</option>
+                    <option>تفاوض</option>
+                    <option>تم البيع</option>
+                    <option>خسرنا العميل</option>
+                    <option>تجاهل</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- عمود WATCH -->
+        <div class="column">
+            <div class="col-header watch-border">
+                <span>👀 تحت المراقبة (WATCH)</span>
+                <span>رصد عام</span>
+            </div>
+            <div class="lead-card">
+                <strong>نشاط تسويقي جديد لبراند محلي</strong>
+                <p>متابعة التفاعل لبحث إمكانية عرض خدمات الإنتاج الإعلاني.</p>
+                <div class="lead-meta">
+                    <span>المصدر: استكشاف السوق</span>
+                    <span>الحداثة: منذ يومين</span>
+                </div>
+                <select>
+                    <option selected>الحالة: جديد</option>
+                    <option>تم التواصل</option>
+                    <option>رد</option>
+                    <option>مهتم</option>
+                    <option>تفاوض</option>
+                    <option>تم البيع</option>
+                    <option>خسرنا العميل</option>
+                    <option>تجاهل</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+  
