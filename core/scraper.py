@@ -1,29 +1,16 @@
-"""نظام جمع ومسح المصادر العامة - رادار NEW MEDIA"""
+from core.classifier import classify_lead
 
-import json
-from datetime import datetime
-
-
-def fetch_public_leads():
-  """محاكاة جلب واستخراج الفرص العامة من خلاصات الويب وشبكات التواصل"""
-  sample_leads = [
-      {
-          "id": "lead_101",
-          "text": "محتاج شركة ميديا تعملي إعلان فيديو احترافي فوري للمحل",
-          "source": "منشور عام",
-          "date": datetime.now().isoformat(),
-      },
-      {
-          "id": "lead_102",
-          "text": "ممكن تفاصيل باقات إنتاج الفيديو والموشن جرافيك لديكم؟",
-          "source": "استفسار وارد",
-          "date": datetime.now().isoformat(),
-      },
-  ]
-  return sample_leads
-
-
-if __name__ == "__main__":
-  leads = fetch_public_leads()
-  print(f"تم رصد {len(leads)} فرصة جديدة بنجاح.")
-
+def run_scraper():
+    raw_posts = [
+        {"text": "مطلوب شركة إنتاج لتصوير فيديو إعلاني تجاري لمنتجاتنا الأسبوع القادم", "source": "رسائل السوق", "url": "#"},
+        {"text": "محتاجين نعرف باقات الميديا الشهرية وإدارة الحملات الرقمية", "source": "شبكات التواصل", "url": "#"},
+        {"text": "براند ملابس جديد يفتتح فرعاً ويبحث عن أفكار تسويقية مميزة", "source": "استكشاف محلي", "url": "#"}
+    ]
+    
+    processed_leads = []
+    for item in raw_posts:
+        lead = classify_lead(item["text"], source=item["source"], url=item["url"])
+        processed_leads.append(lead)
+        
+    return processed_leads
+  
